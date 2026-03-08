@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run TicTacToe",
+            "request": "launch",
+            "mainClass": "com.tictactoe.Main",
+            "projectName": "tictactoe-ai",
+            "classPaths": [
+                "${workspaceFolder}/target/classes"
+            ],
+            "preLaunchTask": "Compile TicTacToe"
+        }
+    ]
+}
