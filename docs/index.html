@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Tic Tac Toe against an unbeatable AI with minimax algorithm. Three difficulty levels: Easy, Medium, Hard. Free online game.">
+    <title>Tic Tac Toe — Unbeatable AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Title -->
+        <h1 class="title">TIC TAC TOE</h1>
+        <p class="subtitle">Challenge the unbeatable AI</p>
+
+        <!-- Score Cards -->
+        <div class="score-panel">
+            <div class="score-card">
+                <span class="score-label">YOU (X)</span>
+                <span class="score-value score-x" id="score-player">0</span>
+            </div>
+            <div class="score-card">
+                <span class="score-label">DRAWS</span>
+                <span class="score-value score-draw" id="score-draw">0</span>
+            </div>
+            <div class="score-card">
+                <span class="score-label">AI (O)</span>
+                <span class="score-value score-o" id="score-ai">0</span>
+            </div>
+        </div>
+
+        <!-- Difficulty Selector -->
+        <div class="difficulty-panel">
+            <button class="pill-btn active" id="btn-easy" data-diff="easy">Easy</button>
+            <button class="pill-btn" id="btn-medium" data-diff="medium">Medium</button>
+            <button class="pill-btn" id="btn-hard" data-diff="hard">Hard</button>
+        </div>
+
+        <!-- Game Board -->
+        <div class="board" id="board">
+            <button class="cell" id="cell-0" data-index="0"></button>
+            <button class="cell" id="cell-1" data-index="1"></button>
+            <button class="cell" id="cell-2" data-index="2"></button>
+            <button class="cell" id="cell-3" data-index="3"></button>
+            <button class="cell" id="cell-4" data-index="4"></button>
+            <button class="cell" id="cell-5" data-index="5"></button>
+            <button class="cell" id="cell-6" data-index="6"></button>
+            <button class="cell" id="cell-7" data-index="7"></button>
+            <button class="cell" id="cell-8" data-index="8"></button>
+        </div>
+
+        <!-- Status -->
+        <p class="status" id="status">Your turn — place X</p>
+
+        <!-- New Game Button -->
+        <button class="new-game-btn" id="btn-new-game">⟳  New Game</button>
+
+        <!-- Game Over Modal -->
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal">
+                <p class="modal-message" id="modal-message"></p>
+                <div class="modal-buttons">
+                    <button class="pill-btn modal-btn rematch" id="btn-rematch">Rematch</button>
+                    <button class="pill-btn modal-btn" id="btn-close">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Made by <a href="https://github.com/Its-PrashantTechie" target="_blank">Prashant</a>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

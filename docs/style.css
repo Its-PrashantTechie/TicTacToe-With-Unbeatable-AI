@@ -1,0 +1,359 @@
+/* ═══════════════════════════════════════════════════════════
+   Tic Tac Toe — Dark Theme Stylesheet
+   Matching the Java Swing version's color palette
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── CSS Variables ────────────────────────────────────── */
+:root {
+    --bg-dark: #1a1a2e;
+    --bg-card: #16213e;
+    --bg-cell: #0f3d62;
+    --bg-cell-hover: #1a557f;
+    --color-x: #00d4ff;
+    --color-o: #ff006e;
+    --color-win: #00ff87;
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --btn-active: #00d4ff;
+    --btn-inactive: #2d2d44;
+    --transition-speed: 0.2s;
+}
+
+/* ─── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Subtle animated gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 0, 110, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 255, 135, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Container ────────────────────────────────────────── */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ─── Title ────────────────────────────────────────────── */
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, var(--color-x), var(--color-o));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+/* ─── Score Panel ──────────────────────────────────────── */
+.score-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.score-card {
+    background: var(--bg-card);
+    border-radius: 14px;
+    padding: 14px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform var(--transition-speed);
+}
+
+.score-card:hover {
+    transform: translateY(-2px);
+}
+
+.score-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.score-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.score-x { color: var(--color-x); }
+.score-o { color: var(--color-o); }
+.score-draw { color: var(--text-secondary); }
+
+/* ─── Difficulty Panel ─────────────────────────────────── */
+.difficulty-panel {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.pill-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 22px;
+    border: none;
+    border-radius: 50px;
+    background: var(--btn-inactive);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    letter-spacing: 0.5px;
+}
+
+.pill-btn:hover {
+    filter: brightness(1.3);
+    transform: translateY(-1px);
+}
+
+.pill-btn.active {
+    background: var(--btn-active);
+    color: var(--bg-dark);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.35);
+}
+
+/* ─── Game Board ───────────────────────────────────────── */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 16px;
+    background: var(--bg-cell);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+}
+
+.cell:hover:not(.taken):not(.game-over) {
+    background: var(--bg-cell-hover);
+    transform: scale(1.04);
+}
+
+.cell:hover:not(.taken):not(.game-over)::after {
+    content: 'X';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 212, 255, 0.15);
+    font-size: 3rem;
+    font-weight: 800;
+    pointer-events: none;
+}
+
+.cell.x {
+    color: var(--color-x);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.cell.o {
+    color: var(--color-o);
+    text-shadow: 0 0 20px rgba(255, 0, 110, 0.4);
+}
+
+.cell.winning {
+    background: rgba(0, 255, 135, 0.15);
+    box-shadow: 0 0 20px rgba(0, 255, 135, 0.3), inset 0 0 20px rgba(0, 255, 135, 0.1);
+    animation: winPulse 1.2s ease-in-out infinite;
+}
+
+.cell.taken, .cell.game-over {
+    cursor: default;
+}
+
+@keyframes winPulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 135, 0.25); }
+    50% { box-shadow: 0 0 30px rgba(0, 255, 135, 0.5), inset 0 0 15px rgba(0, 255, 135, 0.15); }
+}
+
+/* ─── Cell Place Animation ─────────────────────────────── */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.cell.animate-mark {
+    animation: popIn 0.3s ease-out;
+}
+
+/* ─── Status ───────────────────────────────────────────── */
+.status {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    min-height: 1.5em;
+    transition: color var(--transition-speed);
+}
+
+.status.win { color: var(--color-win); }
+.status.lose { color: var(--color-o); }
+
+/* ─── New Game Button ──────────────────────────────────── */
+.new-game-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 50px;
+    background: var(--btn-inactive);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    margin-bottom: 24px;
+}
+
+.new-game-btn:hover {
+    background: var(--btn-active);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ─── Modal ────────────────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal {
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 36px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s;
+    max-width: 340px;
+    width: 90%;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.modal-message {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 10px 28px;
+    font-size: 0.85rem;
+}
+
+.modal-btn.rematch {
+    background: var(--btn-active);
+    color: var(--bg-dark);
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.35);
+}
+
+/* ─── Footer ───────────────────────────────────────────── */
+.footer {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.footer a {
+    color: var(--color-x);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+    .title { font-size: 1.6rem; letter-spacing: 3px; }
+    .cell { font-size: 2.4rem; border-radius: 12px; }
+    .cell:hover:not(.taken):not(.game-over)::after { font-size: 2.4rem; }
+    .board { gap: 8px; padding: 0 4px; }
+    .score-card { padding: 10px 6px; border-radius: 10px; }
+    .score-value { font-size: 1.3rem; }
+    .modal { padding: 28px 24px; }
+}

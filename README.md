@@ -1,6 +1,8 @@
 # 🎮 Tic Tac Toe — With Unbeatable AI
 
-A modern, polished Tic Tac Toe game built in Java Swing featuring an **unbeatable AI** powered by the **Minimax algorithm with Alpha-Beta Pruning**.
+A modern, polished Tic Tac Toe game featuring an **unbeatable AI** powered by the **Minimax algorithm with Alpha-Beta Pruning**. Available as a **Java desktop app** and a **web version** playable in any browser.
+
+[![Play Online](https://img.shields.io/badge/▶_Play_Online-Click_Here-00d4ff?style=for-the-badge&logo=googlechrome&logoColor=white)](https://its-prashanttechie.github.io/TicTacToe-With-Unbeatable-AI/)
 
 ![Java](https://img.shields.io/badge/Java-17+-orange?logo=openjdk)
 ![Build](https://img.shields.io/badge/Build-Maven-blue?logo=apachemaven)
@@ -25,9 +27,19 @@ A modern, polished Tic Tac Toe game built in Java Swing featuring an **unbeatabl
 
 - **🏗️ Clean Architecture** — Game logic fully separated from UI (MVC pattern)
 
+- **🌐 Web Version** — Play directly in your browser via GitHub Pages, no install needed
+
 ---
 
-## 🚀 How to Run
+## 🌐 Play Online
+
+**No installation required!** Play the game right in your browser:
+
+👉 **[https://its-prashanttechie.github.io/TicTacToe-With-Unbeatable-AI/](https://its-prashanttechie.github.io/TicTacToe-With-Unbeatable-AI/)**
+
+---
+
+## 🚀 How to Run (Desktop Version)
 
 ### Prerequisites
 - **Java 17+** installed ([Download](https://adoptium.net/))
@@ -73,11 +85,18 @@ Result: The Hard AI is mathematically unbeatable — it will always win or draw.
 ## 📁 Project Structure
 
 ```
-src/main/java/com/tictactoe/
-├── Main.java          # Application entry point
-├── GameFrame.java     # Window frame setup
-├── GameLogic.java     # Core game logic & AI (no UI dependency)
-└── GamePanel.java     # Modern dark-themed UI components
+├── src/main/java/com/tictactoe/   # Java Desktop App
+│   ├── Main.java                  # Application entry point
+│   ├── GameFrame.java             # Window frame setup
+│   ├── GameLogic.java             # Core game logic & AI
+│   └── GamePanel.java             # Dark-themed UI components
+│
+├── docs/                          # Web Version (GitHub Pages)
+│   ├── index.html                 # Game page structure
+│   ├── style.css                  # Dark theme styling
+│   └── game.js                    # Game logic & AI (JS port)
+│
+└── pom.xml                        # Maven build config
 ```
 
 ---
@@ -86,14 +105,17 @@ src/main/java/com/tictactoe/
 
 | Technology | Purpose |
 |------------|---------|
-| Java 17    | Core language |
-| Swing      | GUI framework |
+| Java 17    | Desktop app core language |
+| Swing      | Desktop GUI framework |
+| HTML/CSS/JS | Web version |
 | Minimax    | AI decision-making |
 | Alpha-Beta Pruning | AI optimization |
 | Maven      | Build & dependency management |
+| GitHub Pages | Web hosting |
 
 ---
 
 ## 📝 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
